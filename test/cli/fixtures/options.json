@@ -1,5 +1,0 @@
-{
-  "allowedStartRules": ["foo", "bar", "baz"],
-  "format": "umd",
-  "input": "-"
-}

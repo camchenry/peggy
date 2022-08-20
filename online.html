@@ -1,41 +1,65 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="copyright" content="Copyright &copy; 2022 The Peggy Authors">
-    <meta name="keywords" content="parser generator, PEG, JavaScript, PEG.js">
-    <meta name="description" content="Peggy is a parser generator for JavaScript based on the parsing expression grammar formalism.">
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="copyright" content="Copyright &copy; 2022 The Peggy Authors" />
+    <meta name="keywords" content="parser generator, PEG, JavaScript, PEG.js" />
+    <meta
+      name="description"
+      content="Peggy is a parser generator for JavaScript based on the parsing expression grammar formalism."
+    />
     <title>Online Version &raquo; Peggy &ndash; Parser Generator for JavaScript</title>
-    <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/layout-online.css">
-    <link rel="stylesheet" href="css/content.css">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <!--[if IE]>
-    <script>
-        var html5elements = ["aside", "footer", "header", "nav"];
-        for (var i = 0; i < html5elements.length; i++) {
-          document.createElement(html5elements[i]);
-        }
-    </script>
-    <![endif]-->
-    <link rel="stylesheet" href="vendor/codemirror/codemirror.css">
-    <link rel="stylesheet" href="vendor/codemirror/lint.css">
-</head>
+    <link rel="stylesheet" href="/css/common.css" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    
+      
+        <link rel="stylesheet" href="/css/layout-online.css" />
+      
+        <link rel="stylesheet" href="/css/content.css" />
+      
+        <link rel="stylesheet" href="/vendor/codemirror/codemirror.css" />
+      
+        <link rel="stylesheet" href="/vendor/codemirror/lint.css" />
+      
+    
+    
+      
+        <script type="module" src="/vendor/lz-string/lz-string.js"></script>
+      
+        <script type="module" src="/js/sandbox.js"></script>
+      
+        <script type="module" src="/js/online.js"></script>
+      
+    
+    
+      
+        <script src="https://unpkg.com/jquery@1.12.4/dist/jquery.min.js"></script>
+      
+        <script src="https://unpkg.com/file-saver@2.0.2/dist/FileSaver.min.js"></script>
+      
+        <script src="https://unpkg.com/node-inspect-extracted@1.1.0/dist/inspect.js"></script>
+      
+        <script src="/vendor/peggy/peggy.min.js"></script>
+      
+        <script src="/vendor/codemirror/codemirror.js"></script>
+      
+        <script src="/vendor/codemirror/lint.js"></script>
+      
+    
+  </head>
+  <body>
+    
+<header id="header">
+  <h1><a href="#main">Peggy</a></h1>
+  <h2>Parser Generator for JavaScript</h2>
+</header>
 
-<body>
-
-        <header id="header">
-            <h1><a href="index.html">Peggy</a></h1>
-            <h2>Parser Generator for JavaScript</h2>
-        </header>
-
-        <nav id="menu">
-            <a  href="index.html">Home</a>
-            <a  class="current" href="online.html">Online Version</a>
-            <a  href="documentation.html">Documentation</a>
-            <a  href="development/index.html">Development</a>
-        </nav>
+<nav id="menu">
+  <a  href="/index.html">Home</a>
+  <a  aria-current="page" class="current"  href="/online.html">Online Version</a>
+  <a  href="/documentation.html">Documentation</a>
+  <a  href="/development/index.html">Development</a>
+</nav>
 
         <div id="loader"> <div id="loader-inner">Loading...</div> </div>
 
@@ -50,6 +74,7 @@
                         <h2 class="suggestion top">
                             <span class="step-number">1</span>
                             <div class="step-title">Write your Peggy grammar</div>
+                            <button id="copy-link">Copy link</button>
                         </h2>
                     </td>
                 </tr>
@@ -57,36 +82,7 @@
                     <td>
                         <div class="textarea-wrapper">
                             <textarea class="code" id="grammar" autocomplete="off" autocorrect="off"
-                                autocapitalize="off" spellcheck="false" disabled>// Simple Arithmetics Grammar
-// ==========================
-//
-// Accepts expressions like "2 * (3 + 4)" and computes their value.
-
-Expression
-  = head:Term tail:(_ ("+" / "-") _ Term)* {
-      return tail.reduce(function(result, element) {
-        if (element[1] === "+") { return result + element[3]; }
-        if (element[1] === "-") { return result - element[3]; }
-      }, head);
-    }
-
-Term
-  = head:Factor tail:(_ ("*" / "/") _ Factor)* {
-      return tail.reduce(function(result, element) {
-        if (element[1] === "*") { return result * element[3]; }
-        if (element[1] === "/") { return result / element[3]; }
-      }, head);
-    }
-
-Factor
-  = "(" _ expr:Expression _ ")" { return expr; }
-  / Integer
-
-Integer "integer"
-  = _ [0-9]+ { return parseInt(text(), 10); }
-
-_ "whitespace"
-  = [ \t\n\r]*</textarea>
+                                autocapitalize="off" spellcheck="false" disabled></textarea>
                         </div>
                     </td>
                 </tr>
@@ -152,16 +148,5 @@ _ "whitespace"
     </tr>
 </table>
 
-
-        </div>
-
-        <script src="https://unpkg.com/jquery@1.12.4/dist/jquery.min.js"></script>
-        <script src="https://unpkg.com/file-saver@2.0.2/dist/FileSaver.min.js"></script>
-        <script src="https://unpkg.com/node-inspect-extracted@1.1.0/dist/inspect.js"></script>
-        <script src="vendor/peggy/peggy.min.js"></script>
-        <script src="vendor/codemirror/codemirror.js"></script>
-        <script src="vendor/codemirror/lint.js"></script>
-        <script src="js/online.js"></script>
-</body>
-
+  </body>
 </html>

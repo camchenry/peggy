@@ -22,7 +22,7 @@ module.exports = function (eleventyConfig) {
     // e.g.: *.md, *.njk, *.html, *.liquid
     templateFormats: ["html", "njk", "liquid", "md"],
     // Path prefix for URLs
-    pathPrefix: "/",
+    pathPrefix: "/peggy", // TODO: Temporary for testing
     // Config for input/output/data/etc. directories
     dir: {
       input: ".",
